@@ -75,22 +75,3 @@ func DoJobs(jobs []CallWork) {
 		job.result <- callResult
 	}
 }
-
-func He(url string) string {
-	client := &http.Client{}
-	request, _ := http.NewRequest("GET", url, nil)
-
-	request.Header.Set("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3")
-
-	response, _ := client.Do(request)
-
-	if response.StatusCode == http.StatusOK {
-		body, _ := ioutil.ReadAll(response.Body)
-		defer response.Body.Close()
-
-		return string(body)
-	} else {
-		panic(ERR_REQUEST_TIMEOUT)
-	}
-
-}
